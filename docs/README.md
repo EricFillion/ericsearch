@@ -1,8 +1,9 @@
-
 ericsearch.com 
 
+
 ```commandline
-pip install mkdocs mkdocs-material
+
+pip install -r requirements.txt
 ```
 
 ```commandline
