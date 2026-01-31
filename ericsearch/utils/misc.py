@@ -84,7 +84,7 @@ def make_readme(repo_id: str) -> str:
     print(result[0].text)
     ```
     
-    See Eric Search's [GitHub](https://github.com/ericfillion/ericsearch) or [website](https://www.ericsearch.com/) for more information. 
+    See Eric Search's [GitHub](https://github.com/ericfillion/ericsearch) for more information. 
 
     """)
 

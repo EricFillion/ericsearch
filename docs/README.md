@@ -1,5 +1,3 @@
-www.ericsearch.com 
-
 
 ```commandline
 

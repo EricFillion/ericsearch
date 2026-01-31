@@ -1,4 +1,4 @@
-name: Deploy www.ericsearch.com
+name: Deploy site
 on:
   push:
     branches: [ "main" ]
