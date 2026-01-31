@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <strong><a href="https://ericsearch.com">ericsearch.com</a></strong>
+  <strong><a href="https://www.ericsearch.com">www.ericsearch.com</a></strong>
 </p>
 
 
@@ -34,7 +34,7 @@ A local vector search engine built for speed and scalability.
 pip install ericsearch
 ```
 
-[Documentation](https://ericsearch.com)
+[Documentation](https://www.ericsearch.com)
 
 ## Maintainers
 - [Eric Fillion](https://github.com/ericfillion) Lead Maintainer

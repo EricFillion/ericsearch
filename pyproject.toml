@@ -41,7 +41,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://ericsearch.com"
+Homepage = "https://www.ericsearch.com"
 Repository = "https://github.com/EricFillion/ericsearch"
 
 [tool.setuptools.packages.find]
