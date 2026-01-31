@@ -1,6 +1,6 @@
 [project]
 name = "ericsearch"
-version = "0.0.1"
+version = "0.0.2"
 description = "A local vector search engine built for speed and scalability"
 readme = "README.md"
 license = { text = "Apache 2.0" }
