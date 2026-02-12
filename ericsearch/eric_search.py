@@ -125,11 +125,20 @@ class EricSearch:
         eric_timer = EricTimer(str(timer_path))
         eric_timer.report()
         with eric_timer.section("file_operations", "Generic: Iterate over input_dir"):
-            for filepath in input_dir_path.glob("*.jsonl"):
-                with open(filepath) as f:
+            if input_dir_path.is_file() and input_dir_path.suffix == ".jsonl":
+                with open(input_dir_path) as f:
                     while line := f.readline():
                         if line.strip():
                             input_count += 1
+            else:
+                for filepath in input_dir_path.glob("*.jsonl"):
+                    with open(filepath) as f:
+                        while line := f.readline():
+                            if line.strip():
+                                input_count += 1
+
+        if input_count == 0:
+            raise ValueError("train_path contains no data")
 
         # we can consider making k0 and k1 configurable in the future.
         # for now the users can just adjust leaf size.
@@ -153,7 +162,7 @@ class EricSearch:
             k0=self.k0,
             k1=self.k1,
             input_count=input_count,
-            input_dir=input_dir_path,
+            input_path=input_dir_path,
             out_dir=out_dir_path,
             embeddings_model=self.embeddings_model,
             bs=args.bs,
