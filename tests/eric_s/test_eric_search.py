@@ -247,3 +247,37 @@ def test_push_within_retry(tmp_path: pathlib.Path):
 
         # This should succeed since we only err before retry
         eric_search.push(repo_id="dontcare")
+
+
+def test_single_file_training(tmp_path: pathlib.Path):
+    (tmp_path / "inputs").mkdir()
+    tmp_data_path = tmp_path / "inputs" / "input_data.jsonl"
+    with open(tmp_data_path, "w") as f:
+        f.write(vector_data.strip())
+
+    eric_ranker = EricRanker(model_name=CROSS_ENCODER_PATH)
+
+    eric_search = EricSearch(model_name=EMBEDDING_MODEL_PATH, eric_ranker=eric_ranker)
+    eric_search.train(
+        train_path=str(tmp_data_path),
+        args=SearchTrainArgs(out_dir=str(tmp_path / "output_0")),
+    )
+
+    # train it twice
+    eric_search.train(
+        str(tmp_data_path),
+        args=SearchTrainArgs(out_dir=str(tmp_path / "output_1")),
+    )
+
+    first_prediction = eric_search("ottawa")
+    print(f"{first_prediction=}")
+
+    eric_search = EricSearch(
+        data_name=str(tmp_path / "output_1"),
+        model_name=EMBEDDING_MODEL_PATH,
+        eric_ranker=eric_ranker,
+    )
+
+    second_prediction = eric_search("ottawa")
+    print(f"{second_prediction=}")
+

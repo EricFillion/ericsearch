@@ -29,7 +29,7 @@ class EricDataTrainArgs(typing.TypedDict):
     input_count: int
     bs: int
     bs_kmeans: int
-    input_dir: pathlib.Path
+    input_path: pathlib.Path
     out_dir: pathlib.Path
     embeddings_model: EmbeddingsModel
     device: torch.device
@@ -45,7 +45,7 @@ def train_eric_search(**kwargs):
 
     # Save embeddings for each input.
     embed_inputs(
-        input_dir=kwargs["input_dir"],
+        input_path=kwargs["input_path"],
         out_dir=kwargs["out_dir"] / "artifacts" / "embeddings",
         embed_fn=kwargs["embeddings_model"].encode,
         input_count=kwargs["input_count"],
@@ -264,7 +264,7 @@ def split_dataset(
 
 def embed_inputs(
     *,
-    input_dir: pathlib.Path,
+    input_path: pathlib.Path,
     out_dir: pathlib.Path,
     embed_fn: EmbedFn,
     input_count: int,
@@ -274,12 +274,19 @@ def embed_inputs(
     out_dir.mkdir(parents=True, exist_ok=True)
 
     def iter_records() -> typing.Iterable[dict]:
-        for filepath in input_dir.glob("*.jsonl"):
-            with open(filepath) as f:
+        if input_path.is_file() and input_path.suffix == ".jsonl":
+            with open(input_path) as f:
                 while line := f.readline():
                     if line.strip():
                         record = json.loads(line)
                         yield record
+        else:
+            for filepath in input_path.glob("*.jsonl"):
+                with open(filepath) as f:
+                    while line := f.readline():
+                        if line.strip():
+                            record = json.loads(line)
+                            yield record
 
     with contextlib.ExitStack() as exit_stack:
         f = exit_stack.enter_context(open(out_dir / "data.jsonl", "w"))
