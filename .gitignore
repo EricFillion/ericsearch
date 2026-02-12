@@ -5,6 +5,7 @@ tests/models/embedding/
 eric_search/
 data/
 examples/hello_world/data/
+train.jsonl
 
 .DS_STORE
 

@@ -86,20 +86,15 @@ The training data is provided as JSONL files with the following fields:
 
 EricSearch's .train() method takes the following parameters: 
 
-1. train_path (str): A path to a directory that  contains JSONL files formatted properly.
+1. train_path (str): A path to aa JSONL file or a directory that contains JSONL files formatted properly.
 
 ```python
-import os
 import json
-
 from ericsearch import EricSearch, SearchTrainArgs
 
-train_dir = 'data/train'
-out_dir = 'data/eric_search'
-
-os.makedirs(train_dir, exist_ok=True)
-
 eric_search = EricSearch()
+
+train_path = "train.jsonl"
 
 train_data = []
 
@@ -107,17 +102,17 @@ for i in range(0, 100):
     train_data.append({"text": f"This is a sample train case {i}", "metadata": {"number": i}})
 
 
-with open(f"{train_dir}/train.jsonl", "w", encoding="utf-8") as f:
+with open(train_path, "w", encoding="utf-8") as f:
     for train_case in train_data:
         f.write(json.dumps(train_case) + "\n")
 
-args = SearchTrainArgs(leaf_size=4, out_dir=out_dir)
+args = SearchTrainArgs(leaf_size=4)
 
-eric_search.train(train_path=train_dir, args=args)
+eric_search.train(train_path=train_path, args=args)
 
 d = eric_search("42")
 
-print(d[0].text) 
+print(d[0].text)
 ```
 
 ## Push to Hugging Face's Hub
