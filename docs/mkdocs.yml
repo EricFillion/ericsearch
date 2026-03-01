@@ -1,0 +1,22 @@
+site_name: Eric Search
+theme:
+  name: material
+  features:
+    - content.code.copy
+  logo: assets/favicon.ico
+  favicon: assets/favicon.ico
+
+extra_css:
+  - stylesheets/custom.css
+
+markdown_extensions:
+  - pymdownx.highlight:
+      linenums: false
+      anchor_linenums: false
+      pygments_lang_class: true
+  - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - EricSearch(): eric-search.md
+  - EricRanker(): eric-ranker.md

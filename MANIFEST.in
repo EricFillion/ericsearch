@@ -1,0 +1,17 @@
+global-exclude *
+
+recursive-include ericsearch *.py
+
+include pyproject.toml
+include README.md
+include LICENSE*
+
+prune data
+prune docs
+prune examples
+prune eric_search
+prune tests
+
+exclude .gitignore
+exclude main.py
+
