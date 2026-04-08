@@ -31,11 +31,11 @@ dependencies = [
     "torch>=2.2",
     "tqdm>=4.66.3",
     "transformers>=5.0.0,<6.0.0",
-    "huggingface-hub<=1.0.0,<2.0.0",
+    "huggingface-hub>=1.0.0,<2.0.0",
     "sentencepiece",
     "protobuf",
     "tokenizers>=0.22.0,<0.23.0",
-    "sentence-transformers>=5.0.0, <6.0.0",
+    "sentence-transformers>=5.0.0,<6.0.0",
     "numpy>=2.0.0,<3.0.0"
 
 ]
