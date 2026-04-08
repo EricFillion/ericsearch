@@ -1,6 +1,6 @@
 [project]
 name = "ericsearch"
-version = "0.0.3"
+version = "0.0.4"
 description = "A local vector search engine built for speed and scalability"
 readme = "README.md"
 license = { text = "Apache 2.0" }
@@ -30,8 +30,8 @@ classifiers = [
 dependencies = [
     "torch>=2.2",
     "tqdm>=4.66.3",
-    "transformers>=4.57.3, <5.0.0",
-    "huggingface-hub >= 0.34.0, < 1.0",
+    "transformers>=5.0.0,<6.0.0",
+    "huggingface-hub<=1.0.0,<2.0.0",
     "sentencepiece",
     "protobuf",
     "tokenizers>=0.22.0,<0.23.0",
